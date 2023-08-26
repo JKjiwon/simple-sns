@@ -12,7 +12,7 @@ data class MemberDto(
     val createdAt: LocalDateTime
 ) {
     companion object {
-        fun toDto(member: Member): MemberDto {
+        fun of(member: Member): MemberDto {
             return MemberDto(
                 id = member.id!!,
                 nickname = member.nickname,

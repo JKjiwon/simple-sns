@@ -13,7 +13,7 @@ class MemberReadService(
 
     fun getMember(memberId: Long): MemberDto {
         val member = memberRepository.findById(memberId).orElseThrow()
-        return MemberDto.toDto(member)
+        return MemberDto.of(member)
     }
 
 }

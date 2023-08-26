@@ -23,7 +23,7 @@ class MemberWriteService(
         val memberUpdatedHistory = MemberUpdatedHistory(nickname = savedMember.nickname, email = savedMember.nickname)
         memberUpdatedHistoryRepository.save(memberUpdatedHistory)
 
-        return MemberDto.toDto(member)
+        return MemberDto.of(member)
     }
 
     fun update(memberId: Long, command: MemberUpdateCommand) {
