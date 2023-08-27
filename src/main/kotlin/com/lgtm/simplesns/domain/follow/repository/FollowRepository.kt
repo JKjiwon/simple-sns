@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Query
 
 interface FollowRepository : JpaRepository<Follow, Long> {
 
+    fun findAllByToMemberId(memberId: Long): List<Follow>
+
     @Query("SELECT f FROM Follow f WHERE f.fromMemberId = :fromMemberId ORDER BY f.id DESC LIMIT :size")
     fun findAllByFromMemberIdAndOrderByIdDescLimitTo(
         fromMemberId: Long,

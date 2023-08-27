@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional
 @Transactional
 @Service
 class PostWriteService(
-    private val postRepository: PostRepository
+    private val postRepository: PostRepository,
 ) {
     fun create(command: PostCreateCommand): PostServiceDto {
         val post = command.toEntity()

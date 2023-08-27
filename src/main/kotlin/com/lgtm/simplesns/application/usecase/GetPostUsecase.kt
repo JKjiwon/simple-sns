@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service
 
 @Service
 class GetPostUsecase(
-    val postReadService: PostReadService,
-    val memberReadService: MemberReadService
+    private val postReadService: PostReadService,
+    private val memberReadService: MemberReadService,
 ) {
     fun execute(postId: Long): PostDto {
         val postServiceDto = postReadService.getPost(postId)

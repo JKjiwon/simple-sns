@@ -21,6 +21,12 @@ class FollowReadService(
         return CursorResult(followings.map { FollowServiceDto.of(it) }, cursorRequest.next(nextKey))
     }
 
+    // TODO: 팔로워 수가 많다면...대량 조회는 어떻게 해야하나...
+    fun getFollowers(memberId: Long): List<FollowServiceDto> {
+        return followRepository.findAllByToMemberId(memberId)
+            .map { FollowServiceDto.of(it) }
+    }
+
     private fun getFollowings(
         cursorRequest: CursorRequest,
         member: MemberDto
