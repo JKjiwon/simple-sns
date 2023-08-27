@@ -16,4 +16,8 @@ class MemberReadService(
         return MemberDto.of(member)
     }
 
+    fun getMembers(ids: List<Long>): List<MemberDto> {
+        return memberRepository.findAllByIdIn(ids).map { MemberDto.of(it) }
+    }
+
 }
