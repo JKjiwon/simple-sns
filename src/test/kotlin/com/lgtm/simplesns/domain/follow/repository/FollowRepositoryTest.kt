@@ -17,7 +17,7 @@ class FollowRepositoryTest {
     lateinit var followRepository: FollowRepository
 
     @AfterEach
-    fun init() {
+    fun tearDown() {
         followRepository.deleteAllInBatch()
     }
 
@@ -53,10 +53,10 @@ class FollowRepositoryTest {
         val follow4 = createFollow(1L, 5L)
         followRepository.saveAll(listOf(follow1, follow2, follow3, follow4))
 
-        val lastId = followRepository.findAll().maxBy { it.id!! }.id!!
+        val lastFollowId = followRepository.findAll().maxBy { it.id!! }.id!!
 
         // when
-        val result = followRepository.findAllByLessThanIdAndFromMemberIdAndOrderByIdDescLimitTo(lastId, 1L, 2)
+        val result = followRepository.findAllByLessThanIdAndFromMemberIdAndOrderByIdDescLimitTo(lastFollowId, 1L, 2)
 
         // then
         assertThat(result).hasSize(2)
