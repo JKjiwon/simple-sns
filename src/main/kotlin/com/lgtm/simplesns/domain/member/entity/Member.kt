@@ -1,10 +1,7 @@
 package com.lgtm.simplesns.domain.member.entity
 
 import com.lgtm.simplesns.domain.common.BaseEntity
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
+import jakarta.persistence.*
 import java.time.LocalDate
 
 @Entity
@@ -15,9 +12,18 @@ class Member(
 
     var nickname: String,
     var email: String,
-    val birthday: LocalDate
-) : BaseEntity() {
+    var password: String,
+    val birthday: LocalDate,
 
+    @ElementCollection
+    @CollectionTable(
+        name = "MEMBER_ROLE",
+        joinColumns = [JoinColumn(name = "member_id")]
+    )
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role")
+    val roles: List<Role> = listOf(Role.USER),
+) : BaseEntity() {
     fun update(member: Member) {
         this.nickname = member.nickname
         this.email = member.email
