@@ -11,8 +11,8 @@ import org.springframework.transaction.annotation.Transactional
 class PostWriteService(
     private val postRepository: PostRepository,
 ) {
-    fun create(command: PostCreateCommand): PostServiceDto {
-        val post = command.toEntity()
+    fun create(memberId: Long, command: PostCreateCommand): PostServiceDto {
+        val post = command.toEntity(memberId)
         val savePost = postRepository.save(post)
         return PostServiceDto.of(savePost)
     }
