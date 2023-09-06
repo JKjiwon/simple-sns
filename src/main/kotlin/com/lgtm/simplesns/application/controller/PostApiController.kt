@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*
 
 @RequestMapping("/api/posts")
 @RestController
-class PostController(
+class PostApiController(
     private val createPostUsecase: CreatePostUsecase,
     private val getPostUsecase: GetPostUsecase
 ) {
