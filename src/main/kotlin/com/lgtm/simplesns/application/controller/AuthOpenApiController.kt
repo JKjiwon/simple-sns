@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RequestMapping("/open-api/auth")
 @RestController
-class AuthController(
+class AuthOpenApiController(
     private val signUpMemberUsecase: SignUpMemberUsecase,
     private val signInMemberUsecase: SignInMemberUsecase
 ) {

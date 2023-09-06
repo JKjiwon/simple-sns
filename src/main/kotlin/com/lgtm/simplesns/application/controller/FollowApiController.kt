@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*
 
 @RequestMapping("/api/follow")
 @RestController
-class FollowController(
+class FollowApiController(
     private val createFollowUsecase: CreateFollowUsecase,
     private val getFollowingUsecase: GetFollowingUsecase
 ) {

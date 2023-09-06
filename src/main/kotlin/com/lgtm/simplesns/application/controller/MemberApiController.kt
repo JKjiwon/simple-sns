@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*
 
 @RequestMapping("/api/members")
 @RestController
-class MemberController(
+class MemberApiController(
     private val memberReadService: MemberReadService,
     private val memberWriteService: MemberWriteService,
 ) {
