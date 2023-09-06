@@ -1,19 +1,16 @@
-package com.lgtm.simplesns.security
+package com.lgtm.simplesns.security.filter
 
+import com.lgtm.simplesns.security.authentication.JwtAuthenticationToken
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
 import org.springframework.http.HttpHeaders
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.BadCredentialsException
 import org.springframework.security.core.Authentication
-import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher
-
-private val DEFAULT_ANT_PATH_REQUEST_MATCHER = AntPathRequestMatcher("/api/*")
 
 class JwtAuthenticationFilter(
     authenticationManager: AuthenticationManager,
-) : AbstractAuthenticationProcessingFilter(DEFAULT_ANT_PATH_REQUEST_MATCHER, authenticationManager) {
+) : CommonAuthenticationFiller(authenticationManager) {
 
     companion object {
         private const val JWT_TOKEN_PREFIX = "Bearer "

@@ -5,6 +5,12 @@ import jakarta.persistence.*
 import java.time.LocalDate
 
 @Entity
+@Table(
+    name = "member",
+    uniqueConstraints = [
+        UniqueConstraint(name = "uk_member", columnNames = ["email"])
+    ]
+)
 class Member(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,10 +18,10 @@ class Member(
 
     var nickname: String,
     var email: String,
-    var password: String,
-    val birthday: LocalDate,
+    var password: String? = null,
+    val birthday: LocalDate? = null,
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(
         name = "MEMBER_ROLE",
         joinColumns = [JoinColumn(name = "member_id")]

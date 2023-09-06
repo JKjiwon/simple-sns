@@ -1,4 +1,4 @@
-package com.lgtm.simplesns.security
+package com.lgtm.simplesns.security.authentication
 
 import org.springframework.security.authentication.AbstractAuthenticationToken
 import org.springframework.security.core.GrantedAuthority
@@ -37,10 +37,10 @@ class JwtAuthenticationToken(
     }
 
     override fun getCredentials(): Any? {
-        return null
+        return jwtToken
     }
 
-    override fun getPrincipal(): UserDetails? {
+    override fun getPrincipal(): Any? {
         return this.principal
     }
 }

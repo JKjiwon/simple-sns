@@ -1,7 +1,9 @@
-package com.lgtm.simplesns.security
+package com.lgtm.simplesns.security.provider
 
-import com.lgtm.simplesns.security.utils.JwtUtils
-import com.lgtm.simplesns.security.utils.JwtVerificationResponse
+import com.lgtm.simplesns.security.authentication.JwtAuthenticationToken
+import com.lgtm.simplesns.security.jwt.JwtUtils
+import com.lgtm.simplesns.security.jwt.JwtVerificationResponse
+import com.lgtm.simplesns.security.userdetail.MemberDetailService
 import io.jsonwebtoken.JwtException
 import org.springframework.security.authentication.AuthenticationProvider
 import org.springframework.security.authentication.BadCredentialsException
