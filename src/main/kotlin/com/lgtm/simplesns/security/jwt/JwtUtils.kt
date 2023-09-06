@@ -1,4 +1,4 @@
-package com.lgtm.simplesns.security.utils
+package com.lgtm.simplesns.security.jwt
 
 import io.jsonwebtoken.*
 import io.jsonwebtoken.io.Decoders
@@ -10,7 +10,7 @@ import java.util.*
 
 @Component
 class JwtUtils(
-    val properties: JwtProperties
+    private val properties: JwtProperties
 ) {
     companion object {
         private const val CLAIM_MEMBER_ID_CODE = "memberId"
@@ -45,7 +45,7 @@ class JwtUtils(
             .setSigningKey(signingKey).build().parseClaimsJws(accessToken).body
 
         return JwtVerificationResponse(
-            memberId = claims[CLAIM_MEMBER_ID_CODE] as Long,
+            memberId = (claims[CLAIM_MEMBER_ID_CODE] as String).toLong(),
         )
     }
 }

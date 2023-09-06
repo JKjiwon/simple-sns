@@ -1,6 +1,5 @@
 package com.lgtm.simplesns.application.controller
 
-import com.lgtm.simplesns.domain.member.dto.MemberCreateCommand
 import com.lgtm.simplesns.domain.member.dto.MemberDto
 import com.lgtm.simplesns.domain.member.dto.MemberUpdateCommand
 import com.lgtm.simplesns.domain.member.service.MemberReadService
@@ -11,17 +10,12 @@ import org.springframework.web.bind.annotation.*
 @RestController
 class MemberController(
     private val memberReadService: MemberReadService,
-    private val memberWriteService: MemberWriteService
+    private val memberWriteService: MemberWriteService,
 ) {
 
     @GetMapping("/{id}")
     fun getMember(@PathVariable id: Long): MemberDto {
         return memberReadService.getMember(id)
-    }
-
-    @PostMapping
-    fun createMember(@RequestBody command: MemberCreateCommand): MemberDto {
-        return memberWriteService.create(command)
     }
 
     @PutMapping("/{id}")

@@ -17,7 +17,7 @@ data class MemberDto(
                 id = member.id!!,
                 nickname = member.nickname,
                 email = member.email,
-                birthday = member.birthday,
+                birthday = member.birthday!!,
                 createdAt = member.createdAt!!
             )
         }

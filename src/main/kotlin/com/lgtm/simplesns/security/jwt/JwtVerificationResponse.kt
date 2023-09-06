@@ -1,4 +1,4 @@
-package com.lgtm.simplesns.security.utils
+package com.lgtm.simplesns.security.jwt
 
 data class JwtVerificationResponse(
     val memberId: Long,
