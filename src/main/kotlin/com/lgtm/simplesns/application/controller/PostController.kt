@@ -4,6 +4,8 @@ import com.lgtm.simplesns.application.dto.PostDto
 import com.lgtm.simplesns.application.usecase.CreatePostUsecase
 import com.lgtm.simplesns.application.usecase.GetPostUsecase
 import com.lgtm.simplesns.domain.post.dto.PostCreateCommand
+import com.lgtm.simplesns.security.userdetail.MemberDetails
+import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.web.bind.annotation.*
 
 @RequestMapping("/api/posts")
@@ -14,8 +16,11 @@ class PostController(
 ) {
 
     @PostMapping
-    fun createPost(@RequestBody command: PostCreateCommand) {
-        createPostUsecase.execute(command)
+    fun createPost(
+        @AuthenticationPrincipal principal: MemberDetails,
+        @RequestBody command: PostCreateCommand
+    ) {
+        createPostUsecase.execute(principal.memberId, command)
     }
 
     @GetMapping("/{id}")
