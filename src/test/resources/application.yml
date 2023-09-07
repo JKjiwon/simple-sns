@@ -3,10 +3,10 @@ spring:
     activate:
       on-profile: test
   datasource:
-    url: jdbc:mysql://localhost:3306/sns
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    username: root
-    password: root1234!!
+    url: jdbc:h2:mem:~/simpleSns;MODE=MySQL
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
 
   jpa:
     hibernate:
@@ -15,4 +15,5 @@ spring:
     properties:
       hibernate:
         format_sql: ture
+        dialect: org.hibernate.dialect.MySQL8Dialect
     open-in-view: false
