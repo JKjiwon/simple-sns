@@ -1,5 +1,6 @@
 package com.lgtm.simplesns.application.controller
 
+import com.lgtm.simplesns.application.common.Api
 import com.lgtm.simplesns.application.dto.MemberSignInCommand
 import com.lgtm.simplesns.application.dto.MemberSignUpCommand
 import com.lgtm.simplesns.application.usecase.SignInMemberUsecase
@@ -18,12 +19,14 @@ class AuthOpenApiController(
     private val signInMemberUsecase: SignInMemberUsecase
 ) {
     @PostMapping("/sign-up")
-    fun signUpMember(@RequestBody command: MemberSignUpCommand): MemberDto {
-        return signUpMemberUsecase.execute(command)
+    fun signUpMember(@RequestBody command: MemberSignUpCommand): Api<MemberDto> {
+        val response = signUpMemberUsecase.execute(command)
+        return Api.ok(response)
     }
 
     @PostMapping("/sign-in")
-    fun signInMember(@RequestBody command: MemberSignInCommand): JwtToken {
-        return signInMemberUsecase.execute(command)
+    fun signInMember(@RequestBody command: MemberSignInCommand): Api<JwtToken> {
+        val response = signInMemberUsecase.execute(command)
+        return Api.ok(response)
     }
 }

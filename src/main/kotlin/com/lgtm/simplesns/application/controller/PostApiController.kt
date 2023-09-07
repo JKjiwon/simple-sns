@@ -1,5 +1,6 @@
 package com.lgtm.simplesns.application.controller
 
+import com.lgtm.simplesns.application.common.Api
 import com.lgtm.simplesns.application.dto.PostDto
 import com.lgtm.simplesns.application.usecase.CreatePostUsecase
 import com.lgtm.simplesns.application.usecase.GetPostUsecase
@@ -19,13 +20,15 @@ class PostApiController(
     fun createPost(
         @AuthenticationPrincipal principal: MemberDetails,
         @RequestBody command: PostCreateCommand
-    ) {
+    ): Api<Any> {
         createPostUsecase.execute(principal.memberId, command)
+        return Api.ok()
     }
 
     @GetMapping("/{id}")
-    fun getPost(@PathVariable id: Long): PostDto {
-        return getPostUsecase.execute(id)
+    fun getPost(@PathVariable id: Long): Api<PostDto> {
+        val response = getPostUsecase.execute(id)
+        return Api.ok(response)
     }
 
 }
