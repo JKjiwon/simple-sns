@@ -24,7 +24,7 @@ class ApplicationExceptionHandler {
         return ResponseEntity
             .status(errorCode.httpStatus)
             .body(
-                Api.of(errorCode)
+                Api.of(errorCode, exception.message)
             )
     }
 
