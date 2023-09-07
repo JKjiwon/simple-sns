@@ -4,8 +4,8 @@ import com.lgtm.simplesns.application.dto.FollowMemberDto
 import com.lgtm.simplesns.application.usecase.CreateFollowUsecase
 import com.lgtm.simplesns.application.usecase.GetFollowingUsecase
 import com.lgtm.simplesns.security.userdetail.MemberDetails
-import com.lgtm.simplesns.util.CursorRequest
-import com.lgtm.simplesns.util.CursorResult
+import com.lgtm.simplesns.utils.CursorRequest
+import com.lgtm.simplesns.utils.CursorResult
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.web.bind.annotation.*
 

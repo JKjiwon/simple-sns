@@ -5,8 +5,8 @@ import com.lgtm.simplesns.domain.follow.dto.FollowServiceDto
 import com.lgtm.simplesns.domain.follow.service.FollowReadService
 import com.lgtm.simplesns.domain.member.dto.MemberDto
 import com.lgtm.simplesns.domain.member.service.MemberReadService
-import com.lgtm.simplesns.util.CursorRequest
-import com.lgtm.simplesns.util.CursorResult
+import com.lgtm.simplesns.utils.CursorRequest
+import com.lgtm.simplesns.utils.CursorResult
 import org.springframework.stereotype.Service
 
 @Service

@@ -1,4 +1,4 @@
-package com.lgtm.simplesns.util
+package com.lgtm.simplesns.utils
 
 data class CursorResult<T>(
     val body: List<T>,
