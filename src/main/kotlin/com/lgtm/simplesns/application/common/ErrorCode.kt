@@ -16,9 +16,11 @@ enum class ErrorCode(
     INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, 500, "Internal Server Error"),
 
     // member
+    MEMBER_NOT_FOUND(HttpStatus.NOT_FOUND, 1004, "Member Not Found"),
 
     // post
+    POST_NOT_FOUND(HttpStatus.NOT_FOUND, 2004, "Post Not Found"),
 
     // follow
-
+    EQUAL_FOLLOWER_FOLLOWING(HttpStatus.BAD_REQUEST, 4011, "From, To 회원이 동일합니다."),
 }
