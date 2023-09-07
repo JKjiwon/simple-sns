@@ -1,4 +1,4 @@
-package com.lgtm.simplesns.application.exceptionhandler
+package com.lgtm.simplesns.application.common.exceptionhandler
 
 import com.lgtm.simplesns.application.common.Api
 import com.lgtm.simplesns.application.common.ApplicationException

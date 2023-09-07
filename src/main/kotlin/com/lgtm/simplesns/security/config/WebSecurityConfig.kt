@@ -1,7 +1,7 @@
 package com.lgtm.simplesns.security.config
 
-import com.lgtm.simplesns.application.exceptionhandler.CustomAccessDenierHandler
-import com.lgtm.simplesns.application.exceptionhandler.CustomAuthenticationEntryPoint
+import com.lgtm.simplesns.application.common.exceptionhandler.CustomAccessDenierHandler
+import com.lgtm.simplesns.application.common.exceptionhandler.CustomAuthenticationEntryPoint
 import com.lgtm.simplesns.security.filter.JwtAuthenticationFilter
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest
 import org.springframework.context.annotation.Bean
