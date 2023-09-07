@@ -8,9 +8,7 @@ import io.jsonwebtoken.JwtException
 import org.springframework.security.authentication.AuthenticationProvider
 import org.springframework.security.authentication.BadCredentialsException
 import org.springframework.security.core.Authentication
-import org.springframework.stereotype.Component
 
-@Component
 class JwtAuthenticationProvider(
     private val jwtUtils: JwtUtils,
     private val memberDetailService: MemberDetailService
