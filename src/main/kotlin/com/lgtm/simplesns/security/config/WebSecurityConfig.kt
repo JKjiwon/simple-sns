@@ -1,5 +1,7 @@
 package com.lgtm.simplesns.security.config
 
+import com.lgtm.simplesns.application.exceptionhandler.CustomAccessDenierHandler
+import com.lgtm.simplesns.application.exceptionhandler.CustomAuthenticationEntryPoint
 import com.lgtm.simplesns.security.filter.JwtAuthenticationFilter
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest
 import org.springframework.context.annotation.Bean
@@ -24,7 +26,9 @@ private val SWAGGER_PATH_PATTERNS = arrayOf(
 @EnableWebSecurity
 @EnableMethodSecurity(securedEnabled = true)
 class WebSecurityConfig(
-    private val authenticationManager: AuthenticationManager
+    private val authenticationManager: AuthenticationManager,
+    private val customAuthenticationEntryPoint: CustomAuthenticationEntryPoint,
+    private val customAccessDenierHandler: CustomAccessDenierHandler
 ) {
 
     @Bean
@@ -46,6 +50,11 @@ class WebSecurityConfig(
                 jwtAuthenticationFilter(),
                 UsernamePasswordAuthenticationFilter::class.java
             )
+
+        http.exceptionHandling {
+            it.authenticationEntryPoint(customAuthenticationEntryPoint)
+                .accessDeniedHandler(customAccessDenierHandler)
+        }
 
         return http.build()
     }
