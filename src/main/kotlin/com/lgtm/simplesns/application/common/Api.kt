@@ -6,7 +6,7 @@ class Api<T>(
     val data: T?,
 ) {
     companion object {
-        fun <T> ok(data: T): Api<T> {
+        fun <T> ok(data: T? = null): Api<T> {
             return of(ErrorCode.OK, data)
         }
 

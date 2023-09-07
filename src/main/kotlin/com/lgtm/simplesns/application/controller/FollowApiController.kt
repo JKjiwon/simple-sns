@@ -1,5 +1,6 @@
 package com.lgtm.simplesns.application.controller
 
+import com.lgtm.simplesns.application.common.Api
 import com.lgtm.simplesns.application.dto.FollowMemberDto
 import com.lgtm.simplesns.application.usecase.CreateFollowUsecase
 import com.lgtm.simplesns.application.usecase.GetFollowingUsecase
@@ -19,15 +20,17 @@ class FollowApiController(
     fun follow(
         @AuthenticationPrincipal principal: MemberDetails,
         @PathVariable toMemberId: Long
-    ) {
+    ): Api<Any> {
         createFollowUsecase.execute(principal.memberId, toMemberId)
+        return Api.ok()
     }
 
     @GetMapping("/followings")
     fun getFollowing(
         @AuthenticationPrincipal principal: MemberDetails,
         @ModelAttribute cursorRequest: CursorRequest
-    ): CursorResult<FollowMemberDto> {
-        return getFollowingUsecase.execute(principal.memberId, cursorRequest)
+    ): Api<CursorResult<FollowMemberDto>> {
+        val response = getFollowingUsecase.execute(principal.memberId, cursorRequest)
+        return Api.ok(response)
     }
 }
