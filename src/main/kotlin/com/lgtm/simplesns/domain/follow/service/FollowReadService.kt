@@ -15,8 +15,8 @@ import org.springframework.transaction.annotation.Transactional
 class FollowReadService(
     private val followRepository: FollowRepository
 ) {
-    fun getFollowing(member: MemberDto, cursorRequest: CursorRequest): CursorResult<FollowServiceDto> {
-        val followings = getFollowings(cursorRequest, member)
+    fun getFollowings(member: MemberDto, cursorRequest: CursorRequest): CursorResult<FollowServiceDto> {
+        val followings = findFollowings(member, cursorRequest)
         val nextKey = getNextKey(followings)
         return CursorResult(followings.map { FollowServiceDto.of(it) }, cursorRequest.next(nextKey))
     }
@@ -27,9 +27,9 @@ class FollowReadService(
             .map { FollowServiceDto.of(it) }
     }
 
-    private fun getFollowings(
-        cursorRequest: CursorRequest,
-        member: MemberDto
+    private fun findFollowings(
+        member: MemberDto,
+        cursorRequest: CursorRequest
     ): List<Follow> {
         return if (cursorRequest.hasKey()) {
             followRepository.findAllByLessThanIdAndFromMemberIdAndOrderByIdDescLimitTo(

@@ -16,7 +16,7 @@ class GetFollowingUsecase(
 ) {
     fun execute(memberId: Long, cursorRequest: CursorRequest): CursorResult<FollowMemberDto> {
         val member = memberReadService.getMember(memberId)
-        val followings = followReadService.getFollowing(member, cursorRequest)
+        val followings = followReadService.getFollowings(member, cursorRequest)
 
         val followMemberDtos = followMemberDtos(followings)
         return CursorResult(followMemberDtos, followings.nextCursorRequest)
