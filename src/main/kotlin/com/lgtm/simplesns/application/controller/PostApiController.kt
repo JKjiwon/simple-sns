@@ -30,5 +30,4 @@ class PostApiController(
         val response = getPostUsecase.execute(id)
         return Api.ok(response)
     }
-
 }
