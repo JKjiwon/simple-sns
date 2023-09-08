@@ -34,6 +34,12 @@ dependencies {
     // configuration-processor
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 
+    // redis
+    implementation("org.springframework.boot:spring-boot-starter-data-redis")
+    implementation("it.ozimov:embedded-redis:0.7.3"){
+        this.exclude("org.slf4j", "slf4j-simple")
+    }
+
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
