@@ -21,6 +21,12 @@ class FollowReadService(
         return CursorResult(followings.map { FollowServiceDto.of(it) }, cursorRequest.next(nextKey))
     }
 
+    fun getFollowers(member: MemberDto, cursorRequest: CursorRequest): CursorResult<FollowServiceDto> {
+        val followers = findFollowers(member, cursorRequest)
+        val nextKey = getNextKey(followers)
+        return CursorResult(followers.map { FollowServiceDto.of(it) }, cursorRequest.next(nextKey))
+    }
+
     // TODO: 팔로워 수가 많다면...대량 조회는 어떻게 해야하나...
     fun getFollowers(memberId: Long): List<FollowServiceDto> {
         return followRepository.findAllByToMemberId(memberId)
@@ -45,6 +51,24 @@ class FollowReadService(
         }
     }
 
-    private fun getNextKey(followings: List<Follow>) =
-        followings.minOfOrNull { it.id!! } ?: CURSOR_NONE_KEY
+    private fun findFollowers(
+        member: MemberDto,
+        cursorRequest: CursorRequest
+    ): List<Follow> {
+        return if (cursorRequest.hasKey()) {
+            followRepository.findAllByLessThanIdAndToMemberIdAndOrderByIdDescLimitTo(
+                cursorRequest.key!!,
+                member.id,
+                cursorRequest.size
+            )
+        } else {
+            followRepository.findAllByToMemberIdAndOrderByIdDescLimitTo(
+                member.id,
+                cursorRequest.size
+            )
+        }
+    }
+
+    private fun getNextKey(follows: List<Follow>) =
+        follows.minOfOrNull { it.id!! } ?: CURSOR_NONE_KEY
 }

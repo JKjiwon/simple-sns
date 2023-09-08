@@ -20,4 +20,18 @@ interface FollowRepository : JpaRepository<Follow, Long> {
         fromMemberId: Long,
         size: Long
     ): List<Follow>
+
+
+    @Query("SELECT f FROM Follow f WHERE f.toMemberId = :toMemberId ORDER BY f.id DESC LIMIT :size")
+    fun findAllByToMemberIdAndOrderByIdDescLimitTo(
+        toMemberId: Long,
+        size: Long
+    ): List<Follow>
+
+    @Query("SELECT f FROM Follow f WHERE f.id < :id AND f.toMemberId = :toMemberId ORDER BY f.id DESC LIMIT :size")
+    fun findAllByLessThanIdAndToMemberIdAndOrderByIdDescLimitTo(
+        id: Long,
+        toMemberId: Long,
+        size: Long
+    ): List<Follow>
 }

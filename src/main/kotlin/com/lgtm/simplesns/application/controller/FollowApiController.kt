@@ -3,6 +3,7 @@ package com.lgtm.simplesns.application.controller
 import com.lgtm.simplesns.application.common.Api
 import com.lgtm.simplesns.application.dto.FollowMemberDto
 import com.lgtm.simplesns.application.usecase.CreateFollowUsecase
+import com.lgtm.simplesns.application.usecase.GetFollowerUsecase
 import com.lgtm.simplesns.application.usecase.GetFollowingUsecase
 import com.lgtm.simplesns.security.userdetail.MemberDetails
 import com.lgtm.simplesns.utils.CursorRequest
@@ -14,7 +15,8 @@ import org.springframework.web.bind.annotation.*
 @RestController
 class FollowApiController(
     private val createFollowUsecase: CreateFollowUsecase,
-    private val getFollowingUsecase: GetFollowingUsecase
+    private val getFollowingUsecase: GetFollowingUsecase,
+    private val getFollowerUsecase: GetFollowerUsecase
 ) {
     @PostMapping("/following/{toMemberId}")
     fun follow(
@@ -31,6 +33,15 @@ class FollowApiController(
         @ModelAttribute cursorRequest: CursorRequest
     ): Api<CursorResult<FollowMemberDto>> {
         val response = getFollowingUsecase.execute(principal.memberId, cursorRequest)
+        return Api.ok(response)
+    }
+
+    @GetMapping("/followers")
+    fun getFollowers(
+        @AuthenticationPrincipal principal: MemberDetails,
+        @ModelAttribute cursorRequest: CursorRequest
+    ): Api<CursorResult<FollowMemberDto>> {
+        val response = getFollowerUsecase.execute(principal.memberId, cursorRequest)
         return Api.ok(response)
     }
 }
