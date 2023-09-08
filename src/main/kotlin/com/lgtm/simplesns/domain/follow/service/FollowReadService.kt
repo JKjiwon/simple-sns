@@ -4,9 +4,9 @@ import com.lgtm.simplesns.domain.follow.dto.FollowServiceDto
 import com.lgtm.simplesns.domain.follow.entity.Follow
 import com.lgtm.simplesns.domain.follow.repository.FollowRepository
 import com.lgtm.simplesns.domain.member.dto.MemberDto
-import com.lgtm.simplesns.utils.CURSOR_NONE_KEY
-import com.lgtm.simplesns.utils.CursorRequest
-import com.lgtm.simplesns.utils.CursorResult
+import com.lgtm.simplesns.utils.cursor.CURSOR_NONE_KEY
+import com.lgtm.simplesns.utils.cursor.CursorRequest
+import com.lgtm.simplesns.utils.cursor.CursorResult
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 

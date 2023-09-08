@@ -7,8 +7,8 @@ import com.lgtm.simplesns.domain.post.dto.PostServiceDto
 import com.lgtm.simplesns.domain.post.dto.TimelineServiceDto
 import com.lgtm.simplesns.domain.post.service.PostReadService
 import com.lgtm.simplesns.domain.post.service.TimelineReadService
-import com.lgtm.simplesns.utils.CursorRequest
-import com.lgtm.simplesns.utils.CursorResult
+import com.lgtm.simplesns.utils.cursor.CursorRequest
+import com.lgtm.simplesns.utils.cursor.CursorResult
 import org.springframework.stereotype.Service
 
 @Service

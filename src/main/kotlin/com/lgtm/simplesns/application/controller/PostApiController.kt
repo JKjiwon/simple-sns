@@ -7,8 +7,8 @@ import com.lgtm.simplesns.application.usecase.GetPostUsecase
 import com.lgtm.simplesns.application.usecase.GetTimelineUsecase
 import com.lgtm.simplesns.domain.post.dto.PostCreateCommand
 import com.lgtm.simplesns.security.userdetail.MemberDetails
-import com.lgtm.simplesns.utils.CursorRequest
-import com.lgtm.simplesns.utils.CursorResult
+import com.lgtm.simplesns.utils.cursor.CursorRequest
+import com.lgtm.simplesns.utils.cursor.CursorResult
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.web.bind.annotation.*
 

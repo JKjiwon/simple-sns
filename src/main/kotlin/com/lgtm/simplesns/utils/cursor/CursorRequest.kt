@@ -1,4 +1,4 @@
-package com.lgtm.simplesns.utils
+package com.lgtm.simplesns.utils.cursor
 
 const val CURSOR_NONE_KEY = -1L
 

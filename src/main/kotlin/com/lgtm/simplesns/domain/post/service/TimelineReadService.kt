@@ -3,9 +3,9 @@ package com.lgtm.simplesns.domain.post.service
 import com.lgtm.simplesns.domain.post.dto.TimelineServiceDto
 import com.lgtm.simplesns.domain.post.entity.Timeline
 import com.lgtm.simplesns.domain.post.repository.TimelineJpaRepository
-import com.lgtm.simplesns.utils.CURSOR_NONE_KEY
-import com.lgtm.simplesns.utils.CursorRequest
-import com.lgtm.simplesns.utils.CursorResult
+import com.lgtm.simplesns.utils.cursor.CURSOR_NONE_KEY
+import com.lgtm.simplesns.utils.cursor.CursorRequest
+import com.lgtm.simplesns.utils.cursor.CursorResult
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
