@@ -9,26 +9,26 @@ import com.lgtm.simplesns.utils.CursorResult
 import org.springframework.stereotype.Service
 
 @Service
-class GetFollowingUsecase(
+class GetFollowerUsecase(
     private val followReadService: FollowReadService,
     private val memberReadService: MemberReadService
 ) {
     fun execute(memberId: Long, cursorRequest: CursorRequest): CursorResult<FollowMemberDto> {
         val member = memberReadService.getMember(memberId)
-        val followings = followReadService.getFollowings(member, cursorRequest)
+        val followers = followReadService.getFollowers(member, cursorRequest)
 
-        val followingMembers = getFollowMembers(followings)
-        return CursorResult(followingMembers, followings.nextCursorRequest)
+        val followerMembers = getFollowerMembers(followers)
+        return CursorResult(followerMembers, followers.nextCursorRequest)
     }
 
-    private fun getFollowMembers(followings: CursorResult<FollowServiceDto>): List<FollowMemberDto> {
-        if (followings.body.isEmpty()) {
+    private fun getFollowerMembers(followers: CursorResult<FollowServiceDto>): List<FollowMemberDto> {
+        if (followers.body.isEmpty()) {
             return listOf()
         }
 
-        val followingMemberIds = followings.body.map { it.toMemberId }
-        val followingMembers = memberReadService.getMembers(followingMemberIds)
-        val followingMemberIdMap = followingMembers.associateBy { it.id }
-        return followings.body.map { FollowMemberDto.of(it, followingMemberIdMap[it.toMemberId]!!) }
+        val followerMemberIds = followers.body.map { it.fromMemberId }
+        val followerMembers = memberReadService.getMembers(followerMemberIds)
+        val followerMemberIdMap = followerMembers.associateBy { it.id }
+        return followers.body.map { FollowMemberDto.of(it, followerMemberIdMap[it.fromMemberId]!!) }
     }
 }
