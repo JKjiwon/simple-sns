@@ -17,4 +17,9 @@ class PostReadService(
             .orElseThrow { ApplicationException(ErrorCode.POST_NOT_FOUND) }
         return PostServiceDto.of(post)
     }
+
+    fun getPosts(ids: List<Long>): List<PostServiceDto> {
+        val posts = postRepository.findAllByIdIn(ids)
+        return posts.map { PostServiceDto.of(it) }
+    }
 }
